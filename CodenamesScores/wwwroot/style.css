@@ -1,0 +1,11 @@
+.team-card
+{
+    margin: 0 auto 0 auto;
+    align-self: flex-start;
+    flex-grow: 1;
+}
+
+.teams
+{
+    display: flex;
+}

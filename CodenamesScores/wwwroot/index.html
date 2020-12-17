@@ -1,0 +1,172 @@
+﻿<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Scuffed Scores</title>
+  <meta name="description" content="Scores">
+  <link rel="stylesheet" href="style.css">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">  -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /> -->
+</head>
+
+<body>
+  <div id="new-game">
+    <button type="button" id="new-game-button" onclick="onNewGame()" class="btn btn-success">New Game</button>
+  </div>
+  <div id="teams" style="display:none">
+
+    <div class="card team-card m-2">
+      <div class="card-header">
+        <h3 class="text-center" id="team1-name">The mungefuttocks</h3>
+      </div>
+      <div class="card-body">
+        <div class="d-flex justify-content-between mb-2">
+          <button type="button" id="team1-decrement" onclick="onUpdateScore(1, false)" class="btn btn-danger" style="margin-left: 1.25em;">-</button>
+          <button type="button" id="team1-score" class="btn btn-primary">Points: 0</button>
+          <button type="button" id="team1-increment" onclick="onUpdateScore(1, true)" class="btn btn-success" style="margin-right: 1.25em;">+</button>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            Players
+          </div>
+          <div class="card-body">
+            <div class="card">
+              <ul class="list-group list-group-flush" id="team1-players">
+
+                <div class="input-group">
+                  <input type="text" id="team1-addplayer" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                  <div class="input-group-append">
+                    <button class="btn btn-success" type="button" onclick="onAddPlayer(1)">+</button>
+                  </div>
+                </div>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="card">
+          <div class="card-header">
+            Clues
+          </div>
+          <div class="card-body">
+            <div class="card">
+              <ul class="list-group list-group-flush" id="team1-guesses">
+
+                <li class="list-group-item">Matt</li>
+                <li class="list-group-item">Rob</li>
+                
+                <div class="input-group">
+                  <input type="text" id="team1-addclue" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                  <div class="input-group-append">
+                    <button class="btn btn-success" type="button" onclick="addClues(1)">+</button>
+                  </div>
+                </div>
+
+              </ul>
+            </div>
+          </div>
+        </div> -->
+        <button type="button" class="btn btn-primary btn-block" onclick="onShowModal(1)">
+          Configure Team
+        </button>
+      </div>
+      
+    </div>
+
+    <div class="card team-card m-2">
+      <div class="card-header">
+        <h3 class="text-center" id="team2-name">The flimbos...</h3>
+      </div>
+      <div class="card-body ">
+        <div class="d-flex justify-content-between mb-2">
+          <button type="button" id="team2-decrement" onclick="onUpdateScore(2, false)" class="btn btn-danger" style="margin-left: 1.25em;">-</button>
+          <button type="button" id="team2-score" class="btn btn-primary">Points: 0</button>
+          <button type="button" id="team2-increment" onclick="onUpdateScore(2, true)" class="btn btn-success"style="margin-right: 1.25em;">+</button>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            Players
+          </div>
+          <div class="card-body">
+            <div class="card">
+              <ul class="list-group list-group-flush" id="team2-players">
+
+                <div class="input-group">
+                  <input type="text" id="team2-addplayer" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                  <div class="input-group-append">
+                    <button class="btn btn-success" type="button" onclick="onAddPlayer(2)">+</button>
+                  </div>
+                </div>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="card">
+          <div class="card-header">
+            Clues
+          </div>
+          <div class="card-body">
+            <div class="card">
+              <ul class="list-group list-group-flush" id="team2-guesses">
+
+                <li class="list-group-item">Matt</li>
+                <li class="list-group-item">Rob</li>
+                
+                <div class="input-group">
+                  <input type="text" id="team2-addclue" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                  <div class="input-group-append">
+                    <button class="btn btn-success" type="button" onclick="addClues(1)">+</button>
+                  </div>
+                </div>
+
+              </ul>
+            </div>
+          </div>
+        </div> -->
+        <button type="button" class="btn btn-primary btn-block" onclick="onShowModal(2)">
+          Configure Team
+        </button>
+      </div>
+      
+    </div>
+  </div>
+
+<!-- Modal -->
+<div class="modal" id="configTeamModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenteredLabel">Configure Team</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Team Name:</span>
+          </div>
+          <input type="text" class="form-control" id="configure-team-name">
+        </div>
+        <p3>Remove Players:</p3>
+        <div class="d-flex flex-wrap" id="remove-players">
+        </div>
+        <buttontype="button" class="btn btn-success btn-block mt-1" onclick="onSubmitConfigChanges()">
+          Apply
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- <button id="butt" onclick="newGame()">New scoreboard</button> -->
+  <script src="script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
