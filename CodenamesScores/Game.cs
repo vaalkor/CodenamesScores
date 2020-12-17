@@ -84,7 +84,7 @@ namespace TestRealtime
                     int currentCount = _values.Team2Players.Length;
                     _values.Team2Players = _values.Team2Players.Append(playerName).ToArray();
                     Update();
-                    delta = _values.Team1Players.Length - currentCount;
+                    delta = _values.Team2Players.Length - currentCount;
                 }
                 return delta > 0;
             }
