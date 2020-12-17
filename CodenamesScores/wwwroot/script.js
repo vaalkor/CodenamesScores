@@ -15,13 +15,16 @@ function getState()
             console.log(this.response);
             _gameState = JSON.parse(this.response);
             renderState();
+        }
 
-            setTimeout(() => { getState()}, 50);
-        }
-        else if(this.status == 404)
+        if (this.status == 404)
         {
-            alert("Cannot find game or something. You've messed it up. go home mate.")
+            alert("Cannot find game or something. You've messed it up. go home mate.");
         }
+        else
+        {
+            setTimeout(() => { getState() }, 50);
+        } 
     });
     req.open("GET", `game/state?gameId=${_gameId}&correlationId=${_gameState.corellationId || ""}`);
     req.send();
